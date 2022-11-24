@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+
+}
+
+body{
+    background: url(../img/123.jpg) no-repeat;
+    background-size: cover;
+
+}
+
+.container{
+    position: absolute;
+    top: 67%;
+    left: 51.5%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: black;
+}
+
+
+.button{
+    background: white;
+    padding: 10px 15px;
+    color: black;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 6px 6px 29px -4px rgba(0, 0, 0, 0.75);
+    margin-top: 25px;
+    text-decoration: none;
+    transition: 0.4s;
+}
+
+.button:hover{
+    background: #34495e;
+    color: #fff;
+}
+
+#boton{
+    margin-top: 60px;
+}

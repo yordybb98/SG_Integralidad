@@ -1,0 +1,293 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+
+<header class="header1">
+    <nav>
+        <a href="{% url 'LogOut' %}">Desconectar {{ request.user.first_name }}</a>
+    </nav>
+    <section class="textos-header">
+        <h1>Sistema de Gestion de la Integralidad</h1>
+        <h2>Facultad 2</h2>
+    </section>
+    <div class="wave" style="height: 100px; overflow: hidden;">
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none"
+             style="height: 200%; width: 100%;">
+            <path d="M0.00,49.98 C150.00,150.00 349.20,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+                  style="stroke: none; fill: #fff;"></path>
+        </svg>
+    </div>
+</header>
+
+<main>
+    <section class="nav-principal">
+        <nav class="navbar navbar-expand-lg navbar-light text-uppercase fs-6">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/' %} activo {% endif %}" aria-current="page"
+                               href="{% url 'Home' %}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/autoevaluaciones/' %} activo {% endif %}"
+                               href="{% url 'Autoevaluaciones' %}">{{nombre}}</a>
+                        </li>
+                        {% block Caracterizacion %}
+                            <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Caracterizaciones
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a role="button" class="dropdown-item btn btn-primary dropdown-item"
+                                       data-bs-toggle="modal" data-bs-target="#primero">1er Año</a></li>
+                                <li><a role="button" class="dropdown-item btn btn-primary dropdown-item"
+                                       data-bs-toggle="modal" data-bs-target="#segundo">2do Año</a></li>
+                                <li><a role="button" class="dropdown-item btn btn-primary dropdown-item"
+                                       data-bs-toggle="modal" data-bs-target="#tercero">3er Año</a></li>
+                                <li><a role="button" class="dropdown-item btn btn-primary dropdown-item"
+                                       data-bs-toggle="modal" data-bs-target="#cuarto">4to Año</a></li>
+                            </ul>
+                            </li>
+                        {% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- Modal primero -->
+    <div class="modal fade" id="primero" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Caracterizacion 1er Año</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{% url 'Registrar Caracterizacion' %}?anno=1" method="POST" class="modal-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Investigacion</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="investigacion"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Cultura</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="cultura"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Docencia</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="docencia"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Extension</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="extension"
+                                  rows="3"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="liveToastBtn">Enviar Caracterizacion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal segundo -->
+    <div class="modal fade" id="segundo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Caracterizacion 2do Año</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{% url 'Registrar Caracterizacion' %}?anno=2" method="POST" class="modal-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Investigacion</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="investigacion"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Cultura</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="cultura"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Docencia</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="docencia"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Extension</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="extension"
+                                  rows="3"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="liveToastBtn">Enviar Caracterizacion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal tercero -->
+    <div class="modal fade" id="tercero" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Caracterizacion 3ero Año</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{% url 'Registrar Caracterizacion' %}?anno=3" method="POST" class="modal-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Investigacion</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="investigacion"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Cultura</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="cultura"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Docencia</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="docencia"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Extension</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="extension"
+                                  rows="3"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="liveToastBtn">Enviar Caracterizacion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal cuarto -->
+    <div class="modal fade" id="cuarto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Caracterizacion 4to Año</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{% url 'Registrar Caracterizacion' %}?anno=4" method="POST" class="modal-body">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Investigacion</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="investigacion"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Cultura</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="cultura"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Docencia</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="docencia"
+                                  rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Extension</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" name="extension"
+                                  rows="3"></textarea>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" id="liveToastBtn">Enviar Caracterizacion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Toast1 -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="liveToast_{{ forloop.counter0 }}" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header {% if message.tags == 'error' %} bg-danger {% elif message.tags == 'success' %} bg-success {% elif message.tags == 'info' %} bg-warning {% endif %}">
+                        <img src="" class="rounded me-2" alt="...">
+                        <strong class="me-auto text-white">{% if message.tags == 'error' %} ERROR {% elif message.tags == 'success' %} CORRECTO {% elif message.tags == 'info' %} ATENCION {% endif %}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        {{ message }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block body %}
+
+
+
+
+    {% endblock %}
+
+    <footer>
+        <div class="contenedor-footer">
+            <div class="content-foo">
+                <h4>Desarrolladores</h4>
+                <p>Yordan Beltran Blanco</p>
+                <p>Roberto Maceira Santiesteban</p>
+                <p>Danel F. Caballero Landa</p>
+                <p>Nathali Hernandez Zaldivar</p>
+            </div>
+        </div>
+        <h2 class="titulo-final">&copy; Universidad de las Ciencias Informaitcas | 2022</h2>
+    </footer>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/form.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    {% if messages %}
+        <script>
+            {% for message in messages %}
+                (new bootstrap.Toast(document.getElementById('liveToast_{{ forloop.counter0 }}'))).show();
+            {% endfor %}
+        </script>
+    {% endif %}
+</main>
+</body>

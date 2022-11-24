@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Sistema de Gestion de Integralidad</title>
+{% endblock %}
+
+{% block body %}
+
+        <div id="carousel-uci" class="carousel slide mx-5 mb-5 mt-2 carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carousel-uci" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carousel-uci" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carousel-uci" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner bordeado">
+                <div class="carousel-item active">
+                    <img src={% static 'img/biblioteca-uci.jpg' %} class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Cientifico</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/cultura-2.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Cultura</h5>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/deporte-uci.jpg' %}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Deporte</h5>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-uci" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel-uci" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+{% endblock %}
+
+{% block Caracterizacion %}
+
+{% endblock Caracterizacion %}

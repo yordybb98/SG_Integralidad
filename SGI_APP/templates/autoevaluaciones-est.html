@@ -1,0 +1,42 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block head %}
+    <title>Autoevaluaciones</title>
+{% endblock %}
+
+{% block body %}
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Año Academico</th>
+                    <th>Evaluacion</th>
+                    <th>Evaluado por:</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for e in list_e %}
+                    <tr>
+                        <th>
+                            {{ e.caracterizacion.anno }}
+                        </th>
+
+                        <th>
+                            {% if e.nota == 0 %}
+                                Aun sin Evaluar
+                            {% else %}
+                                {{e.nota}}
+                            {% endif %}
+                            </th>
+
+                        <th>
+                            {{ e.profesor.usuario.first_name }}
+                        </th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}

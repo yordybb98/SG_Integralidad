@@ -1,0 +1,223 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url(../img/123.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h2{
+    font-size: large;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+h3 {
+    position: relative;
+    display: inline-block;
+    color: chocolate;
+    padding: 0 10px;
+}   
+
+.form-title{
+    text-align: center;
+    margin-bottom: 32px;
+    overflow: hidden;
+}
+
+.cod-form {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+
+.form-header h3{
+    color: #00c3ff;
+    font-size: large;
+    font-weight: bolder;
+    font-family: Arial;
+}
+
+h3::before,h3::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 3px;
+    background: #021e26;
+    top: 0.5em;
+}
+
+h3::after{
+    left: 100%;
+}
+
+h3::before{
+    right: 100%;
+}
+
+span{
+    color: chocolate;
+}
+
+
+.content{
+    background-color: white;
+    width: 360px;
+    border-radius: 15px;
+    color: white;
+    overflow: hidden;
+}
+
+.form-header{
+    background-image: none;
+    background-color: #000000de;
+    text-align: center;
+    padding: 15px 0px 50px 0px;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+}
+
+.form-global {
+    color: black;
+    padding: 10px;
+    text-align: center;
+}
+
+.input-group{
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-input{
+    top: 0px;
+    border: none;
+}
+
+input[type="text"],
+input[type="password"] {
+    border: none;
+    /* border-bottom: 2px solid #021e26; */
+    width: 100%;
+    font-size: 14px;
+    color: #021e26;
+    padding-left: 10px;
+    font-family:'Times New Roman';
+}
+
+.label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 14px;
+    color: chocolate;
+    padding-left: 10px;
+    cursor: text;
+    transition: all .3s ease;
+    font-family: AbeeZee;
+}
+
+
+
+.active{
+    top: -14px;
+    font-size: 12px;
+    color: #666565;
+    font-family: AbeeZee;
+}
+
+.error{
+    color: red;
+}
+
+input[type="submit"]{
+    background: #000000de;
+    color: chocolate;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: 100px;
+    transition: all 0.5s;
+}
+
+input[type="submit"]:hover{
+    background: chocolate;  
+    color: #000000de;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.input-group > p{
+    color: #000000de;
+}
+
+.input-group > p > a{
+    text-decoration: none;
+    color: chocolate;
+    transition: .5s;
+    text-transform: uppercase;
+}
+
+.input-group > p > a:hover{
+    text-decoration: underline;
+}
+
+.form-content {
+    display: none;
+}
+
+.form-content:nth-child(1){
+    display: block;
+}
+
+.required-list{
+    text-align: left;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+#error-message{
+  margin-top: 15px;
+}
+
+.display{
+    display: block;
+}
+
+.non-display{
+    display: none;  
+}
+
+#back{
+    display: inline-block;
+    background: #000000de;
+    color: chocolate;
+    border-radius: 5px;
+    padding: 4px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    width: 50px;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+
+#back:hover{
+    background: chocolate;  
+    color: #000000de;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.mt-5{
+    margin-top: 25px;
+}
+

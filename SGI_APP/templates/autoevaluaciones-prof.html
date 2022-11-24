@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+
+    <title> Autoevaluaciones </title>
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="title-table">
+        <h5 id="titulo">1er Año</h5>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr class="col-12">
+                <th class="col-3">Nombre</th>
+                <th class="col-3">Apellidos</th>
+                <th class="col-3">Evaluacion</th>
+                <th class="col-3">Operaciones</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for e in evaluacion_1 %}
+                <tr class="col-12">
+                    <td class="col-3">
+                        {{ e.caracterizacion.estudiante.usuario.first_name }}
+                    </td>
+                    <td class="col-3">
+                        {{ e.caracterizacion.estudiante.usuario.last_name }}
+                    </td>
+
+                    <td class="col-3">
+                        {% if e.nota == 0 %}
+                            Aun sin Evaluar
+                        {% else %}
+                            {{ e.nota }}
+                        {% endif %}
+                    </td>
+
+                    <td class="col-3">
+                        <a class="btn btn-success operacion" role="button" data-bs-toggle="modal"
+                           data-bs-target="#caracterizacion_{{ e.id }}">Evaluar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="title-table">
+        <h5 id="titulo">2do Año</h5>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr class="col-12">
+                <th class="col-3">Nombre</th>
+                <th class="col-3">Apellidos</th>
+                <th class="col-3">Evaluacion</th>
+                <th class="col-3">Operaciones</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for e in evaluacion_2 %}
+                <tr class="col-12">
+                    <td class="col-3">
+                        {{ e.caracterizacion.estudiante.usuario.first_name }}
+                    </td>
+                    <td class="col-3">
+                        {{ e.caracterizacion.estudiante.usuario.last_name }}
+                    </td>
+
+                    <td class="col-3">
+                        {% if e.nota == 0 %}
+                            Aun sin Evaluar
+                        {% else %}
+                            {{ e.nota }}
+                        {% endif %}
+                    </td>
+
+                    <td class="col-3">
+                        <a class="btn btn-success operacion" role="button" data-bs-toggle="modal"
+                           data-bs-target="#caracterizacion_{{ e.id }}">Evaluar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="title-table">
+        <h5 id="titulo">3er Año</h5>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="col-12">
+            <tr>
+                <th class="col-3">Nombre</th>
+                <th class="col-3">Apellidos</th>
+                <th class="col-3">Evaluacion</th>
+                <th class="col-3">Operaciones</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for e in evaluacion_3 %}
+                <tr class="col-12">
+                    <td class="col-3">
+                        {{ e.caracterizacion.estudiante.usuario.first_name }}
+                    </td>
+                    <td class="col-3">
+                        {{ e.caracterizacion.estudiante.usuario.last_name }}
+                    </td>
+
+                    <td class="col-3">
+                        {% if e.nota == 0 %}
+                            Aun sin Evaluar
+                        {% else %}
+                            {{ e.nota }}
+                        {% endif %}
+                    </td>
+
+                    <td class="col-3">
+                        <a class="btn btn-success operacion" role="button" data-bs-toggle="modal"
+                           data-bs-target="#caracterizacion_{{ e.id }}">Evaluar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="title-table">
+        <h5 id="titulo">4to Año</h5>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr class="col-12">
+                <th class="col-3">Nombre</th>
+                <th class="col-3">Apellidos</th>
+                <th class="col-3">Evaluacion</th>
+                <th class="col-3">Operaciones</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for e in evaluacion_4 %}
+                <tr class="col-12">
+                    <td class="col-3">
+                        {{ e.caracterizacion.estudiante.usuario.first_name }}
+                    </td>
+                    <td class="col-3">
+                        {{ e.caracterizacion.estudiante.usuario.last_name }}
+                    </td>
+
+                    <td class="col-3">
+                        {% if e.nota == 0 %}
+                            Aun sin Evaluar
+                        {% else %}
+                            {{ e.nota }}
+                        {% endif %}
+                    </td>
+
+                    <td class="col-3">
+                        <a class="btn btn-success operacion" role="button" data-bs-toggle="modal"
+                           data-bs-target="#caracterizacion_{{ e.id }}">Evaluar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% for e in list_eval %}
+        <!-- Modal Caracterizacion -->
+        <div class="modal fade" id="caracterizacion_{{ e.id }}" data-bs-backdrop="static"
+             data-bs-keyboard="false" tabindex="-1"
+
+             aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Caracterizacion {{ e.caracterizacion.anno }}
+                            Año</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{% url 'Autoevaluaciones' %}?id_caract={{ e.caracterizacion.id }}" method="POST"
+                          class="modal-body">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Investigacion</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="investigacion"
+                                      rows="3">{{ e.caracterizacion.investigacion }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Cultura</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="cultura"
+                                      rows="3">{{ e.caracterizacion.cultura }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Docencia</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="docencia"
+                                      rows="3">{{ e.caracterizacion.docencia }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Extension</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" name="extension"
+                                      rows="3">{{ e.caracterizacion.extension }}</textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <select class="form-select text-center" name="nota">
+                                <option selected>
+                                    {% if e.nota == 0 %}
+                                        Seleccione una Nota
+                                    {% else %}
+                                        {{ e.nota }} PUNTOS
+                                    {% endif %}
+                                </option>
+                                <option value="2">2 PUNTOS</option>
+                                <option value="3">3 PUNTOS</option>
+                                <option value="4">4 PUNTOS</option>
+                                <option value="5">5 PUNTOS</option>
+                            </select>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary" id="liveToastBtn">Evaluar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block Caracterizacion %}
+
+{% endblock %}

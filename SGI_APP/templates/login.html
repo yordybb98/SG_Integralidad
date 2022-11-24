@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <title>SGI Login</title>
+    </head>
+
+    <body onload="return update()">
+        <div class="content">
+            <div class="form-header">
+                <img src="{% static 'img/user1.png' %}" alt="img_usuario" width="70">
+                <h2><span>Sistema</span></h2>
+                <h2><span>Gestión Integralidad</span></h2>
+            </div>
+
+            <div class="form-global">
+                <div class="form-content">
+                    <form action="/login/" method="POST" class="cod-form" onsubmit="return validate()">
+                        {% csrf_token %}
+                        <div class="form-title">
+                            <h3>Iniciar Sesión</h3>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="text" id="usuario" class="form-input" name="usuario"
+                                   onclick="return active(this.nextElementSibling.id)"
+                                   onblur="return update()">
+                            <label id="usuario-label" class="label" for="usuario">Usuario</label>
+                        </div>
+
+                        <div class="input-group">
+                            <input type="password" id="password" class="form-input" name="contrasena"
+                                   onfocus="return active(this.nextElementSibling.id)" onfocusout="return desactive(this.id)">
+                            <label id="password-label" class="label" for="password">Contraseña</label>
+                        </div>
+
+                        <p id="empty-user-pasw" class="non-display">Por Favor llene todos los caampos</p>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <p id="wrong-user-pasw" class=" {% if message.tags == 'error' %} display error {% endif %}"> {{message}} </p>
+                        {% endfor %}
+                        {% endif %}
+                        <div class="input-group">
+                            <input type="submit" id="submit" value="Iniciar Sesión" class="form-input">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </body>
+   <script src="{% static 'js/form.js' %}"></script>
+   <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+</html>
